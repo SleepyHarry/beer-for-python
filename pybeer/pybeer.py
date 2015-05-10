@@ -21,6 +21,10 @@ class Beer:
                     self.__class__.__name__,
                     self.name)
 
+    def _to_dict(self):
+        return {k: getattr(self, k) for k in self.__class__.__dict__.keys()
+                if not k.startswith('_')}
+
     @property
     def abv(self):
         styleabv = self._soup.firstText("Style | ABV")
